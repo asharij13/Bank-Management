@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create-build-dir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",  // This option allows the creation of parent directories as needed.
+                "${workspaceFolder}\\build"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "build-dll",
+            "dependsOn": "create-build-dir",  // Ensure the build directory exists before building the DLL
+            "type": "shell",
+            "command": "C:/msys64/ucrt64/bin/g++",
+            "args": [
+                "-shared",
+                "-o", "${workspaceFolder}\\build\\bank.dll",
+                "${workspaceFolder}\\src\\application_bank.cpp",
+                "-I", "C:\\Users\\ashar\\OneDrive\\Documents\\GitHub\\bank-management-app-cash-flow\\src", 
+                "-fPIC"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
